@@ -35,7 +35,7 @@ async function main() {
 
     const allLinks = await getLinks();
     // console.log(allLinks);
-    const browser = await puppeteer.launch({ headless: true });
+    const browser = await puppeteer.launch({ headless: false });
     const page = await browser.newPage();
     const scrapedData = [];
 
@@ -48,8 +48,8 @@ async function main() {
     // xlsx.utils.book_append_sheet(wb, ws);
     // xlsx.writeFile(wb, "smartphones.xlsx");
     console.log(scrapedData);
-    fs.writeFile('./phones.json', JSON.stringify(scrapedData), err => err ? console.log(err): null);
-    await browser.close();
+    fs.writeFile('./phones.json', JSON.stringify(scrapedData), err => err ? console.log(err) : null);
+    // await browser.close();
     console.log("Successfully Done!!!");
 }
 
@@ -67,6 +67,33 @@ async function getData() {
 
     return scrapedData;
 }
+
+// async function renderData() {
+//     // var data = document.getElementById("data-list");
+//     phones.forEach((element) => {
+//         return (
+//             <li>
+//                 <div className='Model-container'>
+//                     <div className="site-name">
+//                         <h3>Cashify</h3>
+//                     </div>
+//                     <div className="details">
+//                         <ul>
+//                             <li>{element.Smartphones}</li>
+//                             <li>{element.Price}</li>
+//                             <li>{element.Storage}</li>
+//                             <li>{element.Color}</li>
+//                             <li>{element.Condition}</li>
+//                         </ul>
+//                     </div>
+//                 </div>
+//             </li>
+//         ),
+//             data.innerHTML = list();
+//     })
+// }
+
 main();
+
 
 
